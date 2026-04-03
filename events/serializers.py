@@ -20,7 +20,7 @@ class RegistrationCreateSerializer(serializers.Serializer):
 
 class EventListSerializer(serializers.ModelSerializer):
     created_by = serializers.StringRelatedField()
-    participants_count = serializers.IntegerField(read_only=True)
+    participants_count = serializers.SerializerMethodField()
     available_spots = serializers.SerializerMethodField()
 
     class Meta:
@@ -29,13 +29,13 @@ class EventListSerializer(serializers.ModelSerializer):
                   'status', 'created_by', 'participants_count',
                   'available_spots')
 
+    def get_participants_count(self, obj):
+        return obj.registrations.filter(status='registered').count()
+
     def get_available_spots(self, obj):
         if obj.max_participants == 0:
             return None
-        count = (obj.participants_count
-                 if isinstance(obj.participants_count, int)
-                 else obj.registrations.filter(status='registered').count())
-        return max(0, obj.max_participants - count)
+        return max(0, obj.max_participants - self.get_participants_count(obj))
 
 
 class EventDetailSerializer(serializers.ModelSerializer):

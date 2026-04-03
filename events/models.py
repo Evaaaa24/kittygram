@@ -54,16 +54,6 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
-    @property
-    def participants_count(self):
-        return self.registrations.filter(status='registered').count()
-
-    @property
-    def available_spots(self):
-        if self.max_participants == 0:
-            return None
-        return max(0, self.max_participants - self.participants_count)
-
 
 class Registration(models.Model):
     event = models.ForeignKey(

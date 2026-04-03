@@ -16,12 +16,7 @@ from .serializers import (
 
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.annotate(
-        participants_count=Count(
-            'registrations',
-            filter=Q(registrations__status='registered')
-        )
-    )
+    queryset = Event.objects.all()
     permission_classes = (IsOrganizerOrReadOnly,)
     filterset_fields = ('category', 'status')
     search_fields = ('title', 'description')
@@ -54,8 +49,10 @@ class EventViewSet(viewsets.ModelViewSet):
                 {'detail': 'Вы уже записаны на это событие.'},
                 status=status.HTTP_400_BAD_REQUEST)
 
+        registered_count = event.registrations.filter(
+            status='registered').count()
         if (event.max_participants > 0
-                and event.participants_count >= event.max_participants):
+                and registered_count >= event.max_participants):
             return Response(
                 {'detail': 'Все места заняты.'},
                 status=status.HTTP_400_BAD_REQUEST)
