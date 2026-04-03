@@ -81,11 +81,11 @@
     <div class="hero">
         <div class="emoji">🐱</div>
         <h1>Kittygram</h1>
-        <p>Социальная платформа для котиков и их хозяев. Регистрируйте котиков, отмечайте их достижения и помогайте приютам!</p>
+        <p>Социальная платформа для котиков и их хозяев. Регистрируйте котиков, отмечайте их достижения и организуйте кото-ивенты!</p>
         <div style="margin-top: 25px;">
             <a href="/api/" class="btn">API</a>
             <a href="/api/docs/" class="btn">Swagger</a>
-            <a href="/needs/" class="btn btn-outline">Нужды приютов</a>
+            <a href="/api/events/" class="btn btn-outline">Кото-ивенты</a>
             <a href="/admin/" class="btn btn-outline">Админка</a>
         </div>
         <div class="stats">
@@ -98,12 +98,12 @@
                 <div class="stat-label">хозяев</div>
             </div>
             <div class="stat">
-                <div class="stat-num">{{ needs_count }}</div>
-                <div class="stat-label">нужд приюта</div>
+                <div class="stat-num">{{ events_count }}</div>
+                <div class="stat-label">событий</div>
             </div>
             <div class="stat">
-                <div class="stat-num">{{ closed_count }}</div>
-                <div class="stat-label">нужд закрыто</div>
+                <div class="stat-num">{{ registrations_count }}</div>
+                <div class="stat-label">записей</div>
             </div>
         </div>
     </div>
@@ -139,31 +139,31 @@
 
         <hr class="divider">
 
-        <!-- WISHLIST -->
-        <h2 class="section-title">Wishlist — помощь приютам</h2>
-        <p class="section-sub">Расширение Kittygram: приюты публикуют нужды, пользователи помогают их закрыть</p>
+        <!-- КОТО-ИВЕНТЫ -->
+        <h2 class="section-title">Кото-ивенты — встречи и мероприятия</h2>
+        <p class="section-sub">Расширение Kittygram: организация мероприятий для котиков и их хозяев</p>
         <div class="cards">
             <div class="card">
-                <h3>1. Создай нужду</h3>
-                <p>Приют публикует, что ему нужно: корм, лекарства, лотки, игрушки. Указывает количество и приоритет.</p>
+                <h3>1. Создай событие</h3>
+                <p>Организуй выставку, встречу, день усыновления или вакцинацию. Укажи дату, место, категорию и лимит участников.</p>
             </div>
             <div class="card">
-                <h3>2. Помоги</h3>
-                <p>Любой зарегистрированный пользователь может внести вклад — закрыть нужду частично или полностью.</p>
+                <h3>2. Запишись</h3>
+                <p>Любой зарегистрированный пользователь может записаться на событие. Можно оставить комментарий и отменить запись.</p>
             </div>
             <div class="card">
-                <h3>3. Отслеживай</h3>
-                <p>Прогресс виден в реальном времени: сколько собрано, сколько осталось. Полная прозрачность.</p>
+                <h3>3. Управляй</h3>
+                <p>Организатор видит список участников, может отменить или завершить событие. Автоконтроль лимита мест.</p>
             </div>
         </div>
 
         <div class="api-links">
-            <h3>API нужд приюта</h3>
+            <h3>API кото-ивентов</h3>
             <table>
                 <tr><th>Ресурс</th><th>URL</th><th>Описание</th></tr>
-                <tr><td>Нужды</td><td><a href="/api/needs/">/api/needs/</a></td><td>Список и создание нужд</td></tr>
-                <tr><td>Срочные</td><td><a href="/api/needs/urgent/">/api/needs/urgent/</a></td><td>Только срочные открытые нужды</td></tr>
-                <tr><td>Вклады</td><td><a href="/api/contributions/">/api/contributions/</a></td><td>История всех вкладов</td></tr>
+                <tr><td>События</td><td><a href="/api/events/">/api/events/</a></td><td>Список и создание событий</td></tr>
+                <tr><td>Предстоящие</td><td><a href="/api/events/upcoming/">/api/events/upcoming/</a></td><td>Только предстоящие события</td></tr>
+                <tr><td>Регистрации</td><td><a href="/api/registrations/">/api/registrations/</a></td><td>Все записи на события</td></tr>
             </table>
         </div>
 
